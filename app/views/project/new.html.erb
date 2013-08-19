@@ -1,0 +1,220 @@
+<style type="text/css">
+
+#map_canvas img {
+  max-width: none;
+}
+</style>
+<!-- Page heading -->
+<div class="page-head">
+  <h2 class="pull-left"><i class="icon-tasks"></i> Nuevo Proyecto</h2>
+  <!-- Breadcrumb -->
+  <div class="bread-crumb pull-right">
+    <a href="<%= home_index_path %>"><i class="icon-home"></i> Home</a> 
+    <!-- Divider -->
+    <span class="divider">/</span> 
+    <a href="#" class="bread-current">Nuevo Proyecto</a>
+  </div>
+
+  <div class="clearfix"></div>
+
+</div>
+<!-- Page heading ends -->
+<form action="" method="post">
+<div class="matter">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <!-- Inicio bloques izquiedo -->
+      <div class="span8">
+       
+        <div class="widget form-horizontal">
+          <div class="widget-head">
+            <div class="pull-left">Datos</div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="widget-content">
+            <div class="padd">
+
+              <div class="control-group">
+                <label class="control-label" >Nombre</label>
+                <div class="controls">
+                    <input type="text" class="span12" name="proyecto[nombre]">
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label" >Descripción</label>
+                <div class="controls">
+                    <textarea class="span12" rows="5" name="proyecto[descripcion]"></textarea>
+                </div>
+              </div>
+
+            </div>
+            <div class="widget-foot"></div>
+          </div>
+        </div>
+
+
+        <div class="widget form-horizontal ">
+          <div class="widget-head">
+            <div class="pull-left">Financiamiento</div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="widget-content">
+            <div class="padd">
+
+              <div class="control-group">
+                <label class="control-label" >Código</label>
+                <div class="controls">
+                    <input type="text" class="span12" name="proyecto[cod_financiamiento]">
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label" >Fuentes <button class="btn btn-info btn-mini"><i class="icon-plus"></i> </button></label>
+                <div class="controls form-inline uni">
+                    <select class="span4" name="proyecto[][fuente_financiamiento_id]">
+                      <option value="">Seleccione...</option>
+                    </select>
+                    <div class="input-prepend">
+                    <span class="add-on">$</span>
+                      <input type="text" class="span10" name="proyecto[][monto]" placeholder="Monto...">
+                    </div>
+                    
+                </div>
+              </div>
+
+            </div>
+            <div class="widget-foot"></div>
+          </div>
+        </div>
+
+
+        <div class="widget form-horizontal">
+          <div class="widget-head">
+            <div class="pull-left">Georeferencia</div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="widget-content">
+            <div class="padd">
+
+              <div class="control-group">
+                <label class="control-label" >Dirección</label>
+                <div class="controls">
+                    <input type="text" class="span8" id="direccion">
+                    <button type="button" class="btn btn-info btn-small" id="find"><i class="icon-search"></i> Buscar</button>
+                </div>
+              </div>
+              <div class="control-group">
+
+                  <input name="direccion[lat]" type="hidden" id="lat" />
+                  <input name="direccion[lon]" type="hidden" id="lon" />
+                
+                <div id="map_canvas" style="height: 280px"></div>
+                <p class="muted"><small><em>Si la ubicación no es precisa, desplace el puntero directamente con su mouse  </em></small></p>
+       
+              </div>
+
+
+            </div>
+            <div class="widget-foot"></div>
+          </div>
+        </div>
+        
+      </div>
+      <!-- Inicio bloque derecho -->
+      <div class="span4">
+        <div class="widget  uni">
+          <div class="widget-head">
+            <div class="pull-left">Caracteristicas</div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="widget-content">
+            <div class="padd">
+
+              <div class="control-group">
+                <div class="controls">
+                  <div>
+                    <select  class="span12" name="proyecto[gestor_id]">
+                      <option>Gestor...</option>
+                      <option>Gestor...</option>
+                      <option>Gestor...</option>
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <div class="controls">
+                    <select class="span12" name="proyecto[area_id]">
+                      <option>Area...</option>
+                    </select>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <div class="controls">
+                    <select class="span12" name="proyecto[barrio_id]">
+                      <option>Barrio...</option>
+                    </select>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <div class="controls">
+                    <select class="span12" name="proyecto[tipo_id]">
+                      <option>Tipo...</option>
+                    </select>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <div class="controls">
+                    <select class="span12" name="proyecto[estado_id]">
+                      <option>Estado...</option>
+                    </select>
+                </div>
+              </div>
+              
+            </div>
+            <div class="widget-foot"></div>
+          </div>
+        </div>
+
+
+        <div class="widget form-horizontal">
+          <div class="widget-head">
+            <div class="pull-left">Proyectos asociados</div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="widget-content">
+            <div class="padd">
+              <input type="text" class="span6" placeholder="ID proyecto...">
+              <button class="btn btn-info btn-small"><i class="icon-ok-circle"></i> Agregar</button>
+            </div>
+            <div class="widget-foot"></div>
+          </div>
+        </div>
+
+        <div class="widget form-horizontal">
+          <div class="widget-head">
+            <div class="pull-left">Guardar</div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="widget-content">
+            <div class="padd">
+              <button class="btn btn-large btn-primary" type="submit"><i class="icon-save icon-2x"></i> <span style="font-size:16px; font-weight:bold"> Guardar</span></button>
+            </div>
+            <div class="widget-foot"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+       
+  </div>
+</div>
+</form>
+
+
+<%= render :partial => "mapa" %>

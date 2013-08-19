@@ -1,0 +1,48 @@
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+  function initialize(address) {
+  var geoCoder = new google.maps.Geocoder(address)
+  var request = {address:address};
+  var myCoordsLenght = 6;
+  geoCoder.geocode(request, function(result, status){
+    var latlng = new google.maps.LatLng(result[0].geometry.location.lat(), result[0].geometry.location.lng());
+    document.getElementById('lat').value = result[0].geometry.location.lat();
+    document.getElementById('lon').value = result[0].geometry.location.lng();
+    var myOptions = {
+      zoom: 15,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+      var map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+      var marker = new google.maps.Marker({
+      position:latlng,
+      map:map,
+      title:'title',
+      cursor: 'default', 
+      draggable: true,
+      });
+
+      google.maps.event.addListener(marker, 'dragend', function(evt){
+        document.getElementById('lat').value = evt.latLng.lat().toFixed(myCoordsLenght);
+        document.getElementById('lon').value = evt.latLng.lng().toFixed(myCoordsLenght);
+      });
+      map.setCenter(marker.position);
+        
+  })
+
+
+  } 
+
+
+</script>
+
+<script>
+    $(document).ready(function(){
+        initialize('San Pedro de la Paz');
+        $('#find').click(function(){
+            var direccion = $("#direccion").val();
+            initialize(direccion);    
+        })
+    })
+</script>
